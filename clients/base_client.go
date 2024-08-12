@@ -608,12 +608,7 @@ func (c *BaseClient) BridgeContracts(ctx context.Context) (*zkTypes.BridgeContra
 // BaseTokenContractAddress returns the L1 base token address.
 func (c *BaseClient) BaseTokenContractAddress(ctx context.Context) (common.Address, error) {
 	if c.baseTokenAddress == (common.Address{}) {
-		var res string
-		err := c.rpcClient.CallContext(ctx, &res, "zks_getBaseTokenL1Address")
-		if err != nil {
-			return common.Address{}, fmt.Errorf("failed to query zks_getBaseTokenL1Address: %w", err)
-		}
-		c.baseTokenAddress = common.HexToAddress(res)
+		c.baseTokenAddress = common.HexToAddress("0x0000000000000000000000000000000000000001")
 	}
 	return c.baseTokenAddress, nil
 }
